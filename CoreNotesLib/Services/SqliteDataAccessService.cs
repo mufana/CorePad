@@ -1,6 +1,7 @@
 ﻿using CoreNotesLib.Models;
 using Dapper;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
@@ -10,14 +11,14 @@ namespace CoreNotesLib.Services
 {
     public class SqliteDataAccessService
     {
-       public List<CoreNotesSqliteModel> GetSqliteNotes()
+       public ObservableCollection<CoreNotesSqliteModel> GetSqliteNotes()
         {
-            var returnData = new List<CoreNotesSqliteModel>();
-
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                returnData = connection.Query<CoreNotesSqliteModel>("select * from Notes", new DynamicParameters()).ToList();
-                return returnData;
+                var returnData = connection.Query<CoreNotesSqliteModel>("select * from Notes", new DynamicParameters()).ToList();
+                ObservableCollection<CoreNotesSqliteModel> observableNotes = new ObservableCollection<CoreNotesSqliteModel>(returnData);
+
+                return observableNotes;
             }
         }
 
@@ -29,6 +30,17 @@ namespace CoreNotesLib.Services
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("insert into Notes (NoteText) values (@NoteText)", notesSqliteModel);
+            }
+        }
+
+        public void DeleteSqliteNote(string noteText)
+        {
+            CoreNotesSqliteModel notesSqliteModel = new CoreNotesSqliteModel();
+            notesSqliteModel.NoteText = noteText;
+
+            using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("delete from Notes where NoteText = @NoteText", notesSqliteModel);
             }
         }
 

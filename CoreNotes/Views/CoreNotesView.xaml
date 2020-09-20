@@ -83,6 +83,13 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
+                <MenuItem Header="Manage database" x:Name="ManageDatabase" FlowDirection="LeftToRight">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon
+                                Kind="DatabaseEdit" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
                 <MenuItem Header="About" x:Name="LoadAboutView" FlowDirection="LeftToRight">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon

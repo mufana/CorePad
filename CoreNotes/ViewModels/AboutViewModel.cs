@@ -4,16 +4,30 @@ using System.Reflection;
 
 namespace CoreNotes.ViewModels
 {
+    /// <summary>
+    /// AboutViewModel that inherits from screen
+    /// </summary>
     public class AboutViewModel : Screen
     {
+
+        /// <summary>
+        /// The SnackbarMessageQueue that will receive snackbar messages
+        /// </summary>
         private SnackbarMessageQueue _messageQueue;
+
+        /// <summary>
+        /// Private backing field for the public 'VersionInfo' property
+        /// </summary>
         private string _versionInfo;
 
-        public AboutViewModel(SnackbarMessageQueue MessageQueue)
-        {
-            _messageQueue = MessageQueue;
-        }
+        /// <summary>
+        /// Private backing field for the public 'Rating' property
+        /// </summary>
+        private int _rating;
 
+        /// <summary>
+        /// Public field for the 'VersionInfo' property. Whenever the UI updates, this property will update as well
+        /// </summary>
         public string VersionInfo
         {
             get
@@ -23,13 +37,12 @@ namespace CoreNotes.ViewModels
             }
         }
 
-        private int _rating;
-
+        /// <summary>
+        /// Public field for the 'Rating' property. Whenever the UI updates, this property will update as well
+        /// </summary>
         public int Rating
         {
-            get
-            {
-                return _rating;            }
+            get { return _rating; }
             set
             {
                 _rating = value;
@@ -41,6 +54,19 @@ namespace CoreNotes.ViewModels
             }
         }
 
+        /// <summary>
+        /// AboutViewModel ctor
+        /// </summary>
+        /// <param name="MessageQueue"></param>
+        public AboutViewModel(SnackbarMessageQueue MessageQueue)
+        {
+            _messageQueue = MessageQueue;
+        }
+
+        /// <summary>
+        /// Retrieves the version info from the AssemblyInfo through reflection
+        /// </summary>
+        /// <returns></returns>
         public string GetVersionInfo()
         {
             string major = Assembly.GetExecutingAssembly().GetName().Version.Major.ToString();
@@ -50,10 +76,17 @@ namespace CoreNotes.ViewModels
             return $"CoreNotes version {major}.{minor}.{build}";
         }
 
+        /// <summary>
+        /// Opens the browser to the Github repo
+        /// </summary>
         public void BrowseToGithub()
         {
             System.Diagnostics.Process.Start("https://github.com/mufana/CoreNotes");
         }
+
+        /// <summary>
+        /// Closes the AboutView
+        /// </summary>
         public void Close()
         {
             TryClose();

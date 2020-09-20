@@ -27,6 +27,12 @@
                     <materialDesign:PackIcon
                         Kind="PlaylistEdit" />
                 </Button>
+                <Separator />
+                <Button x:Name="DeleteNote"
+                    ToolTip="Delete the selected note">
+                    <materialDesign:PackIcon
+                        Kind="Delete" />
+                </Button>
             </ToolBar>
         </ToolBarTray>
 

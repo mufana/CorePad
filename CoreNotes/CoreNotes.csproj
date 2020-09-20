@@ -86,8 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Services\ISettings.cs" />
-    <Compile Include="Services\Settings.cs" />
+    <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CoreNotesViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
