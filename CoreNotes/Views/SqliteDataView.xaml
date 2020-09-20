@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="CoreNotes.Views.SqliteDataView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoreNotes.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="LightGray">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+
+        <ToolBarTray>
+            <ToolBar Grid.Row="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                <Button x:Name="Close"
+                    ToolTip="Close this screen">
+                    <materialDesign:PackIcon
+                        Kind="ExitToApp" />
+                </Button>
+                <Separator />
+                <Button x:Name="EditNote"
+                    ToolTip="Edit the selected note">
+                    <materialDesign:PackIcon
+                        Kind="PlaylistEdit" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox ItemsSource="{Binding Notes}" DisplayMemberPath="NoteText" Grid.Row="0" Grid.Column="0" Margin="10,10,10,10"
+            Style="{StaticResource MaterialDesignFilledComboBox}"
+            materialDesign:TextFieldAssist.HasClearButton="True"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
+            materialDesign:ColorZoneAssist.Mode="Inverted"
+            materialDesign:HintAssist.Hint="Selected note"
+            materialDesign:HintAssist.HelperText="Select a note"
+            SelectedItem="{Binding SelectNote}">
+                </ComboBox>
+            </Grid>
+        </StackPanel>
+
+        <materialDesign:Snackbar MessageQueue="{Binding MessageQueue}" Height="100" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+        <StackPanel Grid.Row="2">
+        </StackPanel>
+    </Grid>
+</UserControl>

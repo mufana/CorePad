@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNotes", "CoreNotes\CoreNotes.csproj", "{3E699F83-1345-4854-ADB1-06D7F24D53C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNotesLib", "CoreNotesLib\CoreNotesLib.csproj", "{BF2C01B4-7802-4533-A883-E508B3C17FF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E699F83-1345-4854-ADB1-06D7F24D53C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E699F83-1345-4854-ADB1-06D7F24D53C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E699F83-1345-4854-ADB1-06D7F24D53C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E699F83-1345-4854-ADB1-06D7F24D53C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2C01B4-7802-4533-A883-E508B3C17FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2C01B4-7802-4533-A883-E508B3C17FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2C01B4-7802-4533-A883-E508B3C17FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2C01B4-7802-4533-A883-E508B3C17FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C53A11D-79ED-46D3-ACAD-8893695DAE81}
+	EndGlobalSection
+EndGlobal
