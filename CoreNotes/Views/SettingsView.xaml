@@ -22,8 +22,8 @@
                         Kind="ExitToApp" />
             </Button>
             <Separator />
-                <TextBlock Text="AutoSave" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <ToggleButton ToolTip="Automatically saves your notes" IsChecked="{Binding AutoSave, Mode=TwoWay}">
+                <TextBlock Text="AutoSave to database" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ToggleButton ToolTip="Automatically saves your notes" IsChecked="{Binding AutoSaveToDatabase, Mode=TwoWay}">
                 </ToggleButton>
             <Separator />
                 <Button x:Name="SaveSettingsToJson" Style="{StaticResource MaterialDesignRaisedButton}" Width="150" ToolTip="Saves the current settings to json">
@@ -41,6 +41,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
 
@@ -50,6 +52,10 @@
                         Text="{Binding AutoSaveFileLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center"
                         materialDesign:HintAssist.HelperText="AutoSave file Location">
                     </TextBox>
+                    <TextBlock Text="AutoSave note to file" Grid.Row="3" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                    <ToggleButton Grid.Row="3" ToolTip="Automatically save your notes to file" IsChecked="{Binding AutoSaveToFile, Mode=TwoWay}">
+                    </ToggleButton>
+
                 </Grid>
             </materialDesign:Card>
         </StackPanel>

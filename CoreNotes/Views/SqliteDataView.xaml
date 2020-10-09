@@ -44,15 +44,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <ComboBox ItemsSource="{Binding Notes}" DisplayMemberPath="NoteText" Grid.Row="0" Grid.Column="0" Margin="10,10,10,10"
-            Style="{StaticResource MaterialDesignFilledComboBox}"
-            materialDesign:TextFieldAssist.HasClearButton="True"
-            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
-            materialDesign:ColorZoneAssist.Mode="Inverted"
-            materialDesign:HintAssist.Hint="Selected note"
-            materialDesign:HintAssist.HelperText="Select a note"
-            SelectedItem="{Binding SelectNote}">
+                
+                <ComboBox                   
+                    ItemsSource="{Binding Notes}" DisplayMemberPath="NoteText" Grid.Row="0" Grid.Column="0" Margin="10,10,10,10" 
+                    TextSearch.TextPath="NoteText" IsEditable="True" IsTextSearchEnabled="True"
+                    Style="{StaticResource MaterialDesignFilledComboBox}"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
+                    materialDesign:ColorZoneAssist.Mode="Inverted"
+                    materialDesign:HintAssist.Hint="Type to search for a specific note"
+                    SelectedItem="{Binding SelectNote}">
                 </ComboBox>
             </Grid>
         </StackPanel>

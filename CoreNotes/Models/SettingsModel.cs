@@ -2,8 +2,10 @@
 {
     public class SettingsModel
     {
-        public bool isAutoSave { get; set; }
+        public bool isAutoSaveToFile { get; set; }
 
         public string AutoSaveLocation { get; set; }
+
+        public bool isAutoSaveToDatabase { get; set; }
     }
 }

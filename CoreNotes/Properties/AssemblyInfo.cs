@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("CoreNotes")]
 [assembly: AssemblyDescription("CoreNotes.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Blue82")]
+[assembly: AssemblyCompany("82Blue")]
 [assembly: AssemblyProduct("CoreNotes")]
-[assembly: AssemblyCopyright("Copyright © Blue82 2020")]
+[assembly: AssemblyCopyright("Copyright © 82Blue 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.2")]
-[assembly: AssemblyFileVersion("1.2.2")]
+[assembly: AssemblyVersion("1.3.0")]
+[assembly: AssemblyFileVersion("1.3.0")]

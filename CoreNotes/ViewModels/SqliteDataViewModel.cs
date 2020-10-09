@@ -32,7 +32,7 @@ namespace CoreNotes.ViewModels
         private IEventAggregator _events;
 
         /// <summary>
-        /// Public field for the 'CurrentOpenFileOrDBEntry' property. Whenever the UI updates, this property will update as wwell
+        /// Public field for the 'Notes' property. Whenever the UI updates, this property will update as wwell
         /// </summary>
         public ObservableCollection<CoreNotesSqliteModel> Notes
         {
@@ -45,7 +45,7 @@ namespace CoreNotes.ViewModels
         }
 
         /// <summary>
-        /// Public field for the 'CurrentOpenFileOrDBEntry' property. Whenever the UI updates, this property will update as wwell
+        /// Public field for the 'SelectNote' property. Whenever the UI updates, this property will update as wwell
         /// </summary>
         public CoreNotesSqliteModel SelectNote
         {
@@ -101,12 +101,19 @@ namespace CoreNotes.ViewModels
         {
             if (_selectNote?.NoteText == null)
             {
-                _messageQueue.Enqueue("No note selected!");
+                if(_selectNote?.NoteId >0)
+                {
+                    _sqliteDataAccessService.DeleteSqliteNote(_selectNote);
+                    _messageQueue.Enqueue($"Deleted note with id {_selectNote.NoteId}");
+                }
+                else if (_selectNote?.NoteId == null)
+                {
+                    _messageQueue.Enqueue("No note selected!");
+                }
             }
             else
             {
-                var noteText = _selectNote.NoteText;
-                _sqliteDataAccessService.DeleteSqliteNote(noteText);
+                _sqliteDataAccessService.DeleteSqliteNote(_selectNote);
                 _messageQueue.Enqueue($"Deleted note with id {_selectNote.NoteId}");
             }
         }

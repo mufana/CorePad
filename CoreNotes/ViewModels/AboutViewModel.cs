@@ -77,14 +77,6 @@ namespace CoreNotes.ViewModels
         }
 
         /// <summary>
-        /// Opens the browser to the Github repo
-        /// </summary>
-        public void BrowseToGithub()
-        {
-            System.Diagnostics.Process.Start("https://github.com/mufana/CoreNotes");
-        }
-
-        /// <summary>
         /// Closes the AboutView
         /// </summary>
         public void Close()

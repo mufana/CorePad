@@ -5,8 +5,11 @@ using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
+using System.Windows.Input;
 
 namespace CoreNotes.ViewModels
 {
@@ -39,6 +42,26 @@ namespace CoreNotes.ViewModels
         /// IEventAggretor that created at Bootstrapper. This will receive messages from other ViewModels
         /// </summary>
         private IEventAggregator _events;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private ICommand _saveCommand;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand ?? (_saveCommand = new ActionSaveCommand(() =>
+                {
+                    SaveSqliteNote();
+                }));
+            }
+        }
+
 
         /// <summary>
         /// Public field for the 'Note' property. Whenever the UI updates, this property will update as well
@@ -129,7 +152,7 @@ namespace CoreNotes.ViewModels
         {
             DeactivateItem(ActiveItem, true);
             ActivateItem(new CoreNotesViewModel(_events));
-            Note = "";
+            Note = string.Empty;
         }
 
         /// <summary>
@@ -175,10 +198,14 @@ namespace CoreNotes.ViewModels
         {
             try
             {
-                var tempFileName = $@"{Guid.NewGuid()}.txt";
-                if (_settings.isAutoSave)
+
+                if (_settings.isAutoSaveToFile)
                 {
+                    var tempFileName = $@"{Guid.NewGuid()}.txt";
                     File.WriteAllText($@"{_settings.AutoSaveLocation}{tempFileName}", Note);
+                }
+                else if (_settings.isAutoSaveToDatabase)
+                {
                     SaveSqliteNote();
                 }
             }
@@ -215,6 +242,14 @@ namespace CoreNotes.ViewModels
         }
 
         /// <summary>
+        /// Opens the browser to the Github repo
+        /// </summary>
+        public void BrowseToGithub()
+        {
+            System.Diagnostics.Process.Start("https://github.com/mufana/CoreNotes");
+        }
+
+        /// <summary>
         /// Receives messages sent to the IEventAggregator from other ViewModels
         /// </summary>
         /// <param name="message"></param>
@@ -223,6 +258,28 @@ namespace CoreNotes.ViewModels
             DeactivateItem(ActiveItem, true);
             ActivateItem(new CoreNotesViewModel(_events));
             Note = message;
+        }
+
+        /// <summary>
+        /// Automatically saves the note to the DB when the application closes
+        /// </summary>
+        /// <param name="close"></param>
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+
+            bool isNoteActive = true;
+
+            if(Note != null)
+            {
+                if (Note == "") { }
+
+                else
+                {
+                    SaveSqliteNote();
+                }
+            }
+   
         }
     }
 }
