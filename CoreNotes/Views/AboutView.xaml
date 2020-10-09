@@ -57,18 +57,11 @@
                         <DockPanel>
                             <TextBlock TextWrapping="WrapWithOverflow"  Foreground="{DynamicResource MaterialDesignBodyLight}"
                                 VerticalAlignment="Top">
-                                CoreNotes is a simple MVVM tinkering project. It saves your notes to a file or SQLite Database. 
-                                Enjoying it? tap a star to rate it.
+                                CoreNotes is a simple MVVM tinkering project. It saves your notes to a SQLite Database.
                             </TextBlock>
                         </DockPanel>
                     </Border>
                     <StackPanel Grid.Column="1" Grid.Row="2">
-                        <materialDesign:RatingBar HorizontalAlignment="Center" VerticalAlignment="Center" Value="{Binding Rating, Mode=TwoWay}">
-                        </materialDesign:RatingBar>
-                        <Button x:Name="BrowseToGithub" Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10"
-                        ToolTip="View project info on Github">
-                            <materialDesign:PackIcon Kind="Github" Height="24" Width="24"></materialDesign:PackIcon>
-                        </Button>
                     </StackPanel>
                 </Grid>
             </materialDesign:Card>

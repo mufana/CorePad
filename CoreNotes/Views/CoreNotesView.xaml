@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         Title="CoreNotes" Height="600" Width="800" Background="White" FontSize="16" WindowState="Maximized" WindowStyle="SingleBorderWindow">
     <Grid>
+        <Grid.InputBindings>
+            <KeyBinding Gesture="CTRL+S" Command="{Binding SaveCommand}" />
+        </Grid.InputBindings>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -75,32 +78,43 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-
-                <MenuItem Header="Settings" x:Name="LoadSettingsView" FlowDirection="LeftToRight">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon
+                <MenuItem Header="Settings" FlowDirection="LeftToRight">
+                    <!--<MenuItem Header="Settings" x:Name="LoadSettingsView" FlowDirection="LeftToRight">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon
                                 Kind="Cog" />
-                    </MenuItem.Icon>
-                </MenuItem>
-
-                <MenuItem Header="Manage database" x:Name="ManageDatabase" FlowDirection="LeftToRight">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon
+                        </MenuItem.Icon>
+                    </MenuItem>-->
+                    <MenuItem Header="Manage database" x:Name="ManageDatabase" FlowDirection="LeftToRight">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon
                                 Kind="DatabaseEdit" />
-                    </MenuItem.Icon>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
-
-                <MenuItem Header="About" x:Name="LoadAboutView" FlowDirection="LeftToRight">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon
+                
+                <MenuItem Header="About" FlowDirection="LeftToRight">
+                    <MenuItem Header="About CoreNotes" x:Name="LoadAboutView" FlowDirection="LeftToRight">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon
                                 Kind="About" />
-                    </MenuItem.Icon>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="View Github repository" x:Name="BrowseToGithub" FlowDirection="LeftToRight">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon
+                                Kind="Github" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
             </Menu.Items>
         </Menu>
 
-        <TextBox x:Name="Note" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+        <TextBox x:Name="Note" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+            FontSize="16"
             VerticalScrollBarVisibility="Visible"
+            HorizontalScrollBarVisibility="Visible"
+            TextWrapping="Wrap"
             AcceptsReturn="True"
             AcceptsTab="True">
         </TextBox>

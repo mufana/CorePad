@@ -37,22 +37,43 @@ namespace CoreNotes.ViewModels
         }
 
         /// <summary>
-        /// Public field for the 'CurrentOpenFileOrDBEntry' property. Whenever the UI updates, this property will update as well
+        /// Public field for the 'AutoSaveToFile' property. Whenever the UI updates, this property will update as well
         /// </summary>
-        public bool AutoSave
+        public bool AutoSaveToFile
         {
-            get { return _settings.isAutoSave; }
+            get { return _settings.isAutoSaveToFile; }
             set
             {
-                _settings.isAutoSave = value;
-                NotifyOfPropertyChange(() => AutoSave);
-                if (AutoSave == true)
+                _settings.isAutoSaveToFile = value;
+                NotifyOfPropertyChange(() => AutoSaveToFile);
+                if (AutoSaveToFile == true)
                 {
-                    _messageQueue.Enqueue("AutoSave is set to True");
+                    _messageQueue.Enqueue("AutoSaveToFile is set to True");
                 }
-                else if (AutoSave == false)
+                else if (AutoSaveToFile == false)
                 {
-                    _messageQueue.Enqueue("AutoSave is set to False");
+                    _messageQueue.Enqueue("AutoSaveToFile is set to False");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Public field for the 'AutoSaveToDatabase' property. Whenever the UI updates, this property will update as well
+        /// </summary>
+        public bool AutoSaveToDatabase
+        {
+            get { return _settings.isAutoSaveToDatabase; }
+            set
+            {
+                _settings.isAutoSaveToDatabase = value;
+                NotifyOfPropertyChange(() => AutoSaveToDatabase);
+                if (AutoSaveToDatabase == true)
+                {
+                    _messageQueue.Enqueue("AutoSaveToDatabase is set to True");
+                }
+                else if (AutoSaveToDatabase == false)
+                {
+                    _messageQueue.Enqueue("AutoSaveToDatabase is set to False");
                 }
             }
         }
@@ -77,7 +98,8 @@ namespace CoreNotes.ViewModels
             {
                 var settings = new SettingsModel();
                 settings.AutoSaveLocation = AutoSaveFileLocation;
-                settings.isAutoSave = AutoSave;
+                settings.isAutoSaveToFile = AutoSaveToFile;
+                settings.isAutoSaveToDatabase = AutoSaveToDatabase;
                 var jsonSettings = JsonConvert.SerializeObject(settings);
                 var executableLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 var savePath = Path.Combine(executableLocation);
