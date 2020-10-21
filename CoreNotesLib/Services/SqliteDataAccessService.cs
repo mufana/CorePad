@@ -15,7 +15,7 @@ namespace CoreNotesLib.Services
         {
             using (IDbConnection connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var returnData = connection.Query<CoreNotesSqliteModel>("select * from Notes", new DynamicParameters()).ToList();
+                var returnData = connection.Query<CoreNotesSqliteModel>("select * from Notes", new DynamicParameters()).OrderByDescending(x => x.NoteId).ToList();
                 ObservableCollection<CoreNotesSqliteModel> observableNotes = new ObservableCollection<CoreNotesSqliteModel>(returnData);
 
                 return observableNotes;
